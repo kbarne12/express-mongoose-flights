@@ -9,20 +9,20 @@
   <title><%= title %></title>
 </head>
 <body>
-  <nav>
-		<i class="fas fa-film fa-2x"></i>  
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    
     <a 
-      href="/flights/new"
+      href="/flights/new" 
       <%- title === 'Add Flight' ? 'class="active"' : '' %>
-    >ADD Flight</a>
-    <a 
-      href="/movies/show" 
-      <%- title === 'Add Movie' ? 'class="active"' : '' %>
-    >ADD MOVIE</a>
+    >ADD FLIGHT</a>
     <a 
       href="/flights" 
       <%- title === 'All Flights' ? 'class="active"' : '' %>
-    >ALL Flights</a>
+    >ALL FLIGHTS</a>
+    <a 
+      href="/flights/newDestination" 
+      <%- title === 'Add Destinations' ? 'class="active"' : '' %>
+    >ADD Destinations</a>
   </nav>
   <main>
     <h1><%= title %></h1>

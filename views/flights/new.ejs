@@ -1,3 +1,5 @@
+
+
 <%- include('../partials/header') %>
 
 <form id="new-form" action="/flights" method="POST">
@@ -15,11 +17,14 @@
         <option value="LAX">LAX</option>
         <option value="SAN">SAN</option>
     </select>
-
+  <label>Flight number:</label>
   <input type="number" min='10' max='9999' name="flightNo">
   <label>Departures:</label>
   <input type="datetime-local" name="departs" checked>
   <input type="submit" value="Add Flight">
 </form>
+  
+
+
 
 <%- include('../partials/footer') %>

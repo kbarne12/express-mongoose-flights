@@ -1,12 +1,69 @@
 <%- include('../partials/header') %>
-
 <section id="show-page">
   <div>Airline: </div>
   <div><%= flight.airline %></div>
   <div>Airport: </div>
   <div><%= flight.airport %></div>
-  <div>Flight Number: </div>
+  <div>FLight Number: </div>
   <div><%= flight.flightNo %></div>
-  <div>Now Showing: </div>
+  <div>Departs: </div>
   <div><%= flight.departs %></div>
-  
+</section>
+<form action="/flights/<%=flight._id%>" method="POST">
+  <input type="text" name="seat" required pattern="[A-F][1-9]\d?">
+  <input type="number" name="price" min="0">
+  <button type="submit">Add Ticket</button>
+</form>
+<% if (flight.tickets.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Seat</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% flight.tickets.forEach(function(t) { %>
+          <tr>
+            <td><%= t.seat %></td>
+            <td><%= t.price %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <h5>No tickets Yet</h5>
+  <% } %>
+
+
+
+
+  <form action="/flights/<%= flight._id %>/destinations" method="POST">
+    <select name="destinationId">
+      <% destinations.forEach(function(d){%>
+        <option value="<%=d._id %>"><%=d.airport%></option>
+     <% })%>
+    </select>
+    <input type="submit" value="submit">
+
+
+  </form>
+  <% if (flight.destinations.length) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Destination</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% flight.destinations.forEach(function(d) { %>
+          <tr>
+            <td><%= d.airport %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <h5>No destinations Yet</h5>
+  <% } %>
+  <%- include('../partials/footer') %>

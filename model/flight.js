@@ -1,6 +1,13 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+
+
+const ticketSchema = new Schema({
+    seat: {type: String, match: /[A-F][1-9]\d?/},
+    price: {type: Number, min:0}
+})
+
 const flightSchema = new Schema({
     airline: {type: String, enum: ['American', 'Southwest', 'United']},
     airport: {type: String, enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'], defualt: 'DEN'},
@@ -10,7 +17,9 @@ const flightSchema = new Schema({
         return date.setFullYear(date.getFullYear() + 1);
     }
 },
-    destinations: [{type: Schema.Types.ObjectId, ref: 'Destination'}]
+    destinations: [{type: mongoose.SchemaTypes.ObjectId, ref: 'Destination'}], 
+tickets: [ticketSchema],
+
 })
 
 module.exports = mongoose.model('Flight', flightSchema)
